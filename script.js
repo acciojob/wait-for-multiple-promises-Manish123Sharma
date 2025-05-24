@@ -11,7 +11,7 @@ output.appendChild(loadingRow);
 
 // Helper to create a promise with random timeout between 1-3 seconds
 function createPromise() {
-  const time = Math.random() * 1 + 1; // 1 to 2 seconds
+  const time = Math.random() * 2 + 1; // 1 to 3 seconds
   const formattedTime = Number(time.toFixed(3));
   return new Promise(resolve => {
     setTimeout(() => resolve(formattedTime), formattedTime * 1000);
@@ -43,17 +43,19 @@ Promise.all(promises).then(times => {
   });
 
   // Step 4: Add the total time row
-  const endTime = performance.now();
-  const totalTime = (endTime - startTime) / 1000;
+  // const endTime = performance.now();
+  // const totalTime = (endTime - startTime) / 1000;
 
-  const totalRow = document.createElement("tr");
-  const totalNameCell = document.createElement("td");
-  const totalTimeCell = document.createElement("td");
+  const totalTime = Math.max(...times);
 
-  totalNameCell.textContent = "Total";
-  totalTimeCell.textContent = totalTime.toFixed(3);
+const totalRow = document.createElement("tr");
+const totalNameCell = document.createElement("td");
+const totalTimeCell = document.createElement("td");
 
-  totalRow.appendChild(totalNameCell);
-  totalRow.appendChild(totalTimeCell);
-  output.appendChild(totalRow);
+totalNameCell.textContent = "Total";
+totalTimeCell.textContent = totalTime.toFixed(3);
+
+totalRow.appendChild(totalNameCell);
+totalRow.appendChild(totalTimeCell);
+output.appendChild(totalRow);
 });

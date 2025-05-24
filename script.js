@@ -11,9 +11,10 @@ output.appendChild(loadingRow);
 
 // Helper to create a promise with random timeout between 1-3 seconds
 function createPromise() {
-  const time = Math.random() * 2 + 1; // Random time between 1 and 3 seconds
+  const time = Math.random() * 1 + 1; // 1 to 2 seconds
+  const formattedTime = Number(time.toFixed(3));
   return new Promise(resolve => {
-    setTimeout(() => resolve(time), time * 1000);
+    setTimeout(() => resolve(formattedTime), formattedTime * 1000);
   });
 }
 

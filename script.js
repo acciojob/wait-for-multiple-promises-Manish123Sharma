@@ -1,8 +1,8 @@
-//your JS code here. If required.
 const output = document.getElementById("output");
 
 // Step 1: Show the "Loading..." row initially
 const loadingRow = document.createElement("tr");
+loadingRow.id = "loading"; // ✅ Needed for the test to detect "Loading..."
 const loadingCell = document.createElement("td");
 loadingCell.colSpan = 2;
 loadingCell.textContent = "Loading...";
@@ -11,13 +11,13 @@ output.appendChild(loadingRow);
 
 // Helper to create a promise with random timeout between 1-3 seconds
 function createPromise() {
-  const time = (Math.random() * 2 + 1); // Random time between 1 and 3
+  const time = Math.random() * 2 + 1; // Random time between 1 and 3 seconds
   return new Promise(resolve => {
     setTimeout(() => resolve(time), time * 1000);
   });
 }
 
-// Record the start time to calculate total duration
+// Record start time
 const startTime = performance.now();
 
 // Create and resolve all 3 promises
